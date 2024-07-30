@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FCTC Deposit</title>
+    <link rel="stylesheet" href="withdraw.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://www.gstatic.com/firebasejs/9.10.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.10.0/firebase-storage-compat.js"></script>
+    <style>
+        .back-button {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            padding: 10px 20px;
+            background-color: #f0f0f0;
+            color: #000;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .back-button:hover {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="fctc.png" alt="Logo">
+        </div>
+    </header>
+
+    <!-- Back Button -->
+    <button class="back-button" onclick="goBack()">Back</button>
+
+    <main>
+        <div class="deposit-container">
+            <h1>Deposit FCTC</h1>
+            <div class="deposit-details">
+                <div class="input-group">
+                    <label for="deposit-amount">Amount:</label>
+                    <input type="number" id="deposit-amount" placeholder="Enter amount">
+                </div>
+                <div class="input-group">
+                    <label for="currency">Currency:</label>
+                    <select id="currency">
+                        <option value="usdt">USDT</option>
+                        <option value="fctc">FCTC</option>
+                        <option value="bnb">BNB</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="staking-plan">Staking Plan:</label>
+                    <input type="text" id="staking-plan" readonly>
+                </div>
+                <div class="input-group">
+                    <label for="staking-bonus">Staking Bonus:</label>
+                    <input type="text" id="staking-bonus" readonly>
+                </div>
+                <div class="qr-code-container">
+                    <img id="qr-code" src="qr.png" alt="QR Code">
+                </div>
+                <div class="wallet-info">
+                    <p><strong>0x4Aa9B91D7BB8a6771bA579260d37981Eddee7217</strong> <span id="wallet-address"></span></p>
+                    <button id="copy-address"><i></i> Copy Address</button>
+                </div>
+                <div class="user-info">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" placeholder="Enter your username">
+                    <label for="transaction-hash">Transaction Hash:</label>
+                    <input type="text" id="transaction-hash" placeholder="Enter transaction hash">
+                </div>
+                <div class="upload-section">
+                    <label for="transaction-screenshot">Upload Screenshot:</label>
+                    <input type="file" id="transaction-screenshot" accept="image/*">
+                    <div id="preview-container">
+                        <img id="preview" src="" alt="Screenshot Preview">
+                    </div>
+                </div>
+                <button id="confirm-deposit">Confirm Deposit</button>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 FCTC Token. All rights reserved.</p>
+    </footer>
+    <script>
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDCXNyvHbE0Qoe6ixy5ph0LluJwLAVjRnM",
+            authDomain: "testing-e4d35.firebaseapp.com",
+            projectId: "testing-e4d35",
+            storageBucket: "testing-e4d35.appspot.com",
+            messagingSenderId: "1068295583061",
+            appId: "1:1068295583061:web:044e63ec2fb7b8ef73abdc",
+            measurementId: "G-4C9JQB4NCR"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+        const storage = firebase.storage();
+
+        // Extract staking details from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const stakingPlan = urlParams.get('plan');
+        const stakingBonus = urlParams.get('bonus');
+
+        if (stakingPlan && stakingBonus) {
+            document.getElementById('staking-plan').value = `${stakingPlan} Days`;
+            document.getElementById('staking-bonus').value = `${stakingBonus}% Daily`;
+        }
+
+        // Function to handle deposit submission
+        document.getElementById('confirm-deposit').addEventListener('click', async () => {
+            const userId = document.getElementById('username').value.trim();
+            const depositAmount = parseFloat(document.getElementById('deposit-amount').value);
+            const currency = document.getElementById('currency').value;
+            const transactionHash = document.getElementById('transaction-hash').value.trim();
+            const file = document.getElementById('transaction-screenshot').files[0];
+
+            if (!userId || !depositAmount || !currency || !transactionHash || !file) {
+                alert('Please fill in all fields.');
+                return;
+            }
+
+            try {
+                // Upload screenshot to Firebase Storage
+                const storageRef = storage.ref();
+                const userFolderRef = storageRef.child(userId);
+                const fileRef = userFolderRef.child(file.name);
+                await fileRef.put(file);
+                const fileURL = await fileRef.getDownloadURL();
+
+                // Save deposit details to Firestore
+                await db.collection('User').doc(userId).collection('Deposits').add({
+                    amount: depositAmount,
+                    currency: currency,
+                    transactionHash: transactionHash,
+                    screenshotURL: fileURL,
+                    stakingPlan: `${stakingPlan} Days`,
+                    stakingBonus: `${stakingBonus}% Daily`,
+                    timestamp: firebase.firestore.FieldValue.serverTimestamp()
+                });
+                // Redirect to Deposit Successful page
+                window.location.href = 'depositesucess.html';
+            } catch (error) {
+                console.error('Error adding deposit: ', error);
+                alert('Error recording deposit.');
+            }
+        });
+
+        // Function to go back to the home page
+        function goBack() {
+            window.location.href = 'web.html';
+        }
+    </script>
+</body>
+</html>

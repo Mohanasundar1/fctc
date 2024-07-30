@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Introducer Reward</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('dark-futuristic-background.jpg') no-repeat center center fixed;
+            background-size: cover; /* Ensure the background covers the entire viewport */
+            color: #fff; /* Default text color for better readability */
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7); /* Darker semi-transparent overlay */
+            backdrop-filter: blur(10px); /* Blurs the background */
+            z-index: -1; /* Ensure the overlay is behind the content */
+        }
+
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            background: rgba(0, 0, 0, 0.8); /* Darker background for content */
+            padding: 20px;
+            border-radius: 12px; /* Slightly more rounded corners for a modern look */
+            backdrop-filter: blur(8px); /* Blurred background effect */
+        }
+
+        h1 {
+            text-align: center;
+            color:white; /* Neon color for futuristic look */
+        }
+
+        .info-container {
+            margin-bottom: 20px;
+        }
+
+        .info-box {
+            background: rgba(255, 255, 255, 0.1); /* Slightly transparent background */
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .info-box h2 {
+            margin: 0;
+            color: white; /* Neon color for headings */
+        }
+
+        .info-box p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay"></div> <!-- Semi-transparent overlay for blur effect -->
+    <div class="container">
+        <h1>Daily Introducer Reward</h1>
+        <div class="info-container">
+            <div class="info-box">
+                <h2>Staking Bonus</h2>
+                <p id="daily-bonus">Loading...</p> <!-- Placeholder for dynamic data -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Function to calculate staking bonus
+        function calculateStakingBonus(days, initialAmount) {
+            const dailyBonusRates = {
+                200: 0.0010, // 0.10% daily
+                400: 0.0020, // 0.20% daily
+                800: 0.0025, // 0.25% daily
+                1200: 0.0030 // 0.30% daily
+            };
+            const dailyBonusRate = dailyBonusRates[days];
+            if (dailyBonusRate === undefined) {
+                throw new Error("Invalid number of days. Supported values are 200, 400, 800, or 1200.");
+            }
+
+            let finalAmount = initialAmount;
+            for (let i = 0; i < days; i++) {
+                finalAmount += finalAmount * dailyBonusRate;
+            }
+            return finalAmount;
+        }
+
+        // Function to fetch and display staking bonus
+        function displayDailyBonus(days, initialAmount) {
+            try {
+                const bonus = calculateStakingBonus(days, initialAmount);
+                document.getElementById('daily-bonus').textContent = `${bonus.toFixed(2)} FCTC Tokens`;
+            } catch (error) {
+                console.error(error);
+                document.getElementById('daily-bonus').textContent = 'Error loading data';
+            }
+        }
+
+        // Example usage: change the days and initial amount as needed
+        const daysStaked = 400; // Example value: 200, 400, 800, 1200
+        const initialAmount = 1000.0; // Example initial amount
+        displayDailyBonus(daysStaked, initialAmount);
+    </script>
+</body>
+</html>

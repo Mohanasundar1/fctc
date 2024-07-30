@@ -1,0 +1,114 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-image: url('pexels-energepic-com-27411-159888.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: #fff;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+    backdrop-filter: blur(10px); /* Optional: to make the background less distracting */
+}
+
+.sidebar {
+    width: 250px;
+    background-color: rgba(26, 26, 26, 0.9);
+    padding: 20px;
+}
+
+.logo {
+    font-size: 32px; /* Increased font size */
+    font-weight: bold;
+    margin-bottom: 30px; /* Adjusted margin */
+}
+
+.navigation {
+    list-style-type: none;
+    padding: 0;
+}
+
+.navigation li {
+    margin: 20px 0; /* Increased margin */
+    cursor: pointer;
+    font-size: 28px; /* Increased font size */
+}
+
+.navigation li i {
+    margin-right: 10px;
+}
+
+.navigation .active {
+    color: #f53b57;
+}
+
+.main-content {
+    flex: 1;
+    padding: 20px;
+    background-color: rgba(43, 43, 43, 0.9);
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.user-info {
+    font-size: 24px; /* Increased font size */
+}
+
+.wallet-info {
+    font-size: 24px; /* Increased font size */
+}
+
+.display-mode {
+    display: flex;
+    gap: 10px;
+}
+
+.display-mode button {
+    margin: 0;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 32px; /* Increased font size */
+    background-color: #555;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+}
+
+.display-mode .active {
+    background-color: #d38490;
+}
+
+.dashboard {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.card {
+    background-color: rgba(51, 51, 51, 0.9);
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.card h2 {
+    margin-top: 0;
+    font-size: 24px; /* Increased font size */
+}
+
+.amount {
+    font-size: 30px; /* Increased font size */
+    margin: 10px 0;
+}
+
+.details p {
+    margin: 8px 0;
+    font-size: 16px; /* Increased font size */
+}

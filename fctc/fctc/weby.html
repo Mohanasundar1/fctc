@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="webi.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .content-section {
+            display: none;
+        }
+        .content-section.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="sidebar">
+            <div class="logo">FCTCTOKEN</div>
+            <ul class="navigation">
+                <li class="profile" onclick="showSection('profile-section')">
+                    <i class="fas fa-user"></i> Profile
+                </li>
+                <li class="staking" onclick="showSection('staking-section')">
+                    <i class="fas fa-coins"></i> Staking
+                </li>
+                <li class="wallet" onclick="showSection('wallet-section')">
+                    <i class="fas fa-wallet"></i> Wallet
+                </li>
+                <li class="team" onclick="showSection('team-section')">
+                    <i class="fas fa-users"></i> Team
+                </li>
+                <li class="report" onclick="showSection('report-section')">
+                    <i class="fas fa-chart-line"></i> Report
+                </li>
+                <li><i class="fas fa-sign-out-alt"></i> Logout</li>
+            </ul>
+        </nav>
+        <main class="main-content">
+            <header class="header">
+                <div class="user-info">
+                    <span class="user-id">FCTC</span>
+                    <span class="user-name">(FCTCTOKEN)</span>
+                </div>
+                <div class="wallet-info">
+                    <span class="wallet-balance">W-Wallet - 0.00 USD</span>
+                </div>
+                <div class="display-mode">
+                    <button class="dark-mode active">Dark</button>
+                    <button class="light-mode">Light</button>
+                </div>
+            </header>
+            <section class="hero-banner">
+                <img src="hero-banner.png" alt="Hero Banner">
+            </section>
+            <section id="profile-section" class="content-section">
+                <!-- Profile Section Content -->
+                <h2>Profile Info</h2>
+                <p>Details about the user's profile.</p>
+                <button onclick="showProfileContent('info')">Info</button>
+                <button onclick="showProfileContent('kyc')">KYC</button>
+                <button onclick="showProfileContent('change-password')">Change Password</button>
+                <div id="profile-info" class="profile-content">
+                    <h3>Profile Information</h3>
+                    <p>Details about the user's profile.</p>
+                </div>
+                <div id="profile-kyc" class="profile-content" style="display: none;">
+                    <h3>KYC Details</h3>
+                    <p>Information regarding KYC verification.</p>
+                </div>
+                <div id="profile-change-password" class="profile-content" style="display: none;">
+                    <h3>Change Password</h3>
+                    <p>Form to change the user's password.</p>
+                </div>
+            </section>
+            <!-- Add other sections similarly -->
+            <section id="staking-section" class="content-section">
+                <h2>Staking Plans</h2>
+                <p>*FCTC TOKEN STAKING PLAN*</p>
+                <p>*6 Month Plan... 3%*</p>
+                <p>*1 Year Plan... 5%*</p>
+                <p>*2 Year Plan... 7%*</p>
+                <p>*3 Year Plan... 9%*</p>
+                <p>*REFERRAL PROFIT ... 5%*</p>
+            </section>
+            <section id="wallet-section" class="content-section">
+                <h2>Wallet</h2>
+                <!-- Wallet Content -->
+            </section>
+            <section id="team-section" class="content-section">
+                <h2>Team</h2>
+                <!-- Team Content -->
+            </section>
+            <section id="report-section" class="content-section">
+                <h2>Report</h2>
+                <!-- Report Content -->
+            </section>
+            <section class="interactive-buttons">
+                <button class="interactive-button buy"><i class="fas fa-shopping-cart"></i> Buy</button>
+                <button class="interactive-button sell"><i class="fas fa-hand-holding-usd"></i> Sell</button>
+                <button class="interactive-button trade"><i class="fas fa-exchange-alt"></i> Trade</button>
+            </section>
+        </main>
+    </div>
+    <script>
+        function showSection(sectionId) {
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.style.display = 'none';
+            });
+            document.getElementById(sectionId).style.display = 'block';
+        }
+
+        function showProfileContent(contentId) {
+            document.querySelectorAll('.profile-content').forEach(content => {
+                content.style.display = 'none';
+            });
+            document.getElementById(`profile-${contentId}`).style.display = 'block';
+        }
+    </script>
+    <script src="webs.js"></script>
+</body>
+</html>

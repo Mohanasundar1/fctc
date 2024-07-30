@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Introducer Reward System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            background-image: url('image.jpeg'); 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 350px;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #666;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+        }
+        .button:hover {
+            background-color: #218838;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+        .daily-earnings {
+            margin-top: 10px;
+            font-size: 16px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Daily Introducer Reward</h1>
+        <div class="input-group">
+            <label for="stakeAmount">Enter Amount Staked:</label>
+            <input type="number" id="stakeAmount" placeholder="Enter amount in tokens">
+        </div>
+        <button class="button" onclick="calculateReward()">Calculate Reward</button>
+        <div class="result" id="rewardResult"></div>
+        <div class="daily-earnings" id="dailyEarnings"></div>
+    </div>
+
+    <script>
+        // Initialize daily earnings variable
+        let dailyEarnings = 0;
+
+        function calculateReward() {
+            // Get the staking amount from input
+            const stakeAmount = parseFloat(document.getElementById('stakeAmount').value);
+            // Check if the input is valid
+            if (isNaN(stakeAmount) || stakeAmount <= 0) {
+                document.getElementById('rewardResult').innerText = 'Please enter a valid amount.';
+                return;
+            }
+            // Calculate the reward (5% of the staking amount)
+            const reward = (stakeAmount * 0.05).toFixed(2);
+            // Update daily earnings
+            dailyEarnings += parseFloat(reward);
+            // Display the result
+            document.getElementById('rewardResult').innerText = `Introducer Reward: ${reward} tokens`;
+            document.getElementById('dailyEarnings').innerText = `Total Daily Earnings: ${dailyEarnings.toFixed(2)} tokens`;
+        }
+    </script>
+</body>
+</html>

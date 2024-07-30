@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FCTC MAIN Wallet</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('image.jpeg'); 
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            color: #fff;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            /* backdrop-filter: blur(10px); */
+            z-index: -1;
+        }
+
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 12px;
+            backdrop-filter: blur(8px);
+        }
+
+        h1 {
+            text-align: center;
+            color: #ffffff;
+        }
+
+        .info-container {
+            margin-bottom: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center items horizontally */
+        }
+
+        .info-box {
+            display: flex;
+            flex-direction: column;
+            width: 100%; /* Make info-box take full width */
+            align-items: flex-start; /* Align items to the left */
+        }
+
+        .info-box h2 {
+            margin: 0;
+            color: #ffffff;
+        }
+
+        .info-box p {
+            margin: 5px 0;
+        }
+
+        .info-box .token {
+            font-size: 1.5em;
+            color: #ffffff;
+        }
+
+        .info-box .minimum {
+            margin-top: 10px;
+            font-size: 1em;
+            color: #ff6666;
+        }
+
+        .input-container {
+            position: relative;
+            margin: 10px 0;
+            width: 50%; /* Reduced width */
+            align-self: left; /* Center the input box */
+        }
+
+        .input-box {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            background: rgba(0, 0, 0, 0.8);
+            color: #ffffff;
+            font-size: 1.5em;
+            text-align: center;
+        }
+
+        .withdraw-box button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            background-color: #ffffff;
+            color: #000;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        .withdraw-box button:hover {
+            background-color: #00cc99;
+        }
+
+        .min-withdrawal {
+            margin-top: 10px;
+            font-size: 1em;
+            color: #ff6666;
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay"></div>
+    <div class="container">
+        <h1>FCTC MAIN WALLET</h1>
+
+        <div class="info-container">
+            <div class="info-box">
+                <h2>Available Balance</h2>
+                <div class="input-container">
+                    <input type="text" class="input-box" id="staked-amount-input" value="5000 FCTC" readonly>
+                </div>
+                <p class="minimum">Minimum withdraw: 2000 FCTC</p>
+            </div>
+            <div class="withdraw-box">
+                <button id="withdraw-button">Withdraw</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('withdraw-button').addEventListener('click', function() {
+            window.location.href = 'withdraw.html';
+        });
+    </script>
+</body>
+</html>

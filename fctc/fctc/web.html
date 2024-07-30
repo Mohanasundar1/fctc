@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="web.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <nav class="sidebar">
+            <div class="logo">DASHBOARD</div>
+            <ul class="navigation">
+                <li class="profile">
+                    <i class="fas fa-user"></i> Profile
+                    <div class="dropdown-content">
+                        <a href="userinfo.html">Info</a>
+                        <a href="kyc.html">KYC</a>
+                        <a href="changepass.html">Change Password</a>
+                    </div>
+                </li>
+                <li class="staking">
+                    <i class="fas fa-coins"></i> Staking
+                    <div class="dropdown-content">
+                        <a href="Stacking.html">Staking</a>
+                        <p>*My Staking*</p>
+                    </div>
+                </li>
+                <li class="deposit">
+                    <i class="fas fa-wallet"></i> Wallet
+                    <div class="dropdown-content">
+                        <a href="withdraw.html" class="default-tab">Withdrawal</a>
+                        <a href="deposit.html">Deposit</a>
+                    </div>
+                </li>
+                <li class="team">
+                    <i class="fas fa-users"></i> Team
+                    <div class="dropdown-content">
+                        <a href="ref.html">Referral</a>
+                        <a href="level.html">Level</a>
+                    </div>
+                </li>
+                <li class="report">
+                    <i class="fas fa-chart-line"></i> Report
+                    <div class="dropdown-content">
+                        <a href="report.html">Report Directory</a>
+                    </div>
+                </li>
+                <li>
+                    <i class="fas fa-sign-out-alt"></i> <a href="AdminLogin/index.html">Logout</a>
+                </li>
+            </ul>
+        </nav>
+        <main class="main-content">
+            <header class="header">
+                <div class="user-info">
+                    <span class="user-id">FCTC</span>
+                    <span class="user-name">TOKEN</span>
+                </div>
+                <div class="wallet-info">
+                    <span class="wallet-balance">W-Wallet - 0.00 USD</span>
+                </div>
+                <div class="display-mode">
+                      <button class="dark-mode active"></button>
+                      <button class="light-mode"></button>
+                </div>
+            </header>
+            <!-- <section class="hero-banner">
+                <img src="hero-banner.png" alt="Hero Banner">
+            </section> -->
+            <section class="dashboard">
+                <!-- 16 different boxes with content -->
+                <div class="card card1">
+                    <i class="fas fa-users"></i>
+                    <h2>FCTC WALLET</h2>
+                    <h3>4000</h3>
+                    <button id="walletButton" class="wallet-button">Withdraw</button>
+                </div>
+                <a href="stakedcoin.html" class="card card2">
+                    <i class="fas fa-user-plus"></i>
+                    <h2>STAKED COINS</h2>
+                </a>
+                <a href="Stacking.html" class="card card3">
+                    <i class="fas fa-user-check"></i>
+                    <h2>STAKING BONUS</h2>
+                </a>
+                <a href="dailystakingbonus.html" class="card card4">
+                    <i class="fas fa-user-times"></i>
+                    <h2>DAILY STAKING BONUS</h2>
+                </a>
+                <a href="introducerreward.html" class="card card5">
+                    <i class="fas fa-coins"></i>
+                    <h2>Introducer reward</h2>
+                </a>
+                <a href="dailyintroducer.html" class="card card6">
+                    <i class="fas fa-wallet"></i>
+                    <h2>Daily introducer reward</h2>
+                </a>
+                <a href="communityreward.html" class="card card7">
+                    <i class="fas fa-chart-line"></i>
+                    <h2>Community reward</h2>
+                </a>
+                <a href="dailycommunityreward.html" class="card card8">
+                    <i class="fas fa-chart-pie"></i>
+                    <h2>Daily community reward</h2>
+                </a>
+                <a href="mydailyear.html" class="card card9">
+                    <i class="fas fa-hand-holding-usd"></i>
+                    <h2>My daily Earnings</h2>
+                </a>
+                <a href="totalear.html" class="card card10">
+                    <i class="fas fa-donate"></i>
+                    <h2>Total earnings</h2>
+                </a>
+                <div class="card card11">
+                    <i class="fas fa-file-invoice-dollar"></i>
+                    <h2>FCTC in Koinpark Exchange</h2>
+                    <div class="button-container">
+                        <a href="https://www.koinpark.com/trade/FCTC-INR" target="_blank">FCTC/INR</a>
+                        <a href="https://www.koinpark.com/trade/FCTC-USDT" target="_blank">FCTC/USDT</a>
+                    </div>
+                </div>
+                <a href="https://bscscan.com/token/0x8B8E4C825B2deb7aE5fC4614A0e151bB981D3Cbe" class="card card12" target="_blank">
+                    <i class="fas fa-dollar-sign"></i>
+                    <h2>FCTC Bep 20 Contract</h2>
+                </a>
+                <a href="comingsoon.html" class="card card13">
+                    <i class="fa fa-cloud-upload"></i>
+                    <h2>ADD USDT WALLET</h2>
+                </a>
+                <a href="comingsoon.html" class="card card14">
+                    <i class="fa fa-cloud-upload"></i>
+                    <h2>ADD BNB WALLET</h2>
+                </a>
+            </section>
+        </main>
+    </div>
+    <script src="webs.js"></script>
+    <script>
+        document.getElementById('walletButton').addEventListener('click', function() {
+            window.location.href = 'withdraw.html';
+        });
+    </script>
+</body>
+</html>

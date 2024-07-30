@@ -1,0 +1,108 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header .logo {
+    text-align: center;
+    padding: 20px;
+}
+
+.deposit-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.deposit-container h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.deposit-details .input-group {
+    margin-bottom: 15px;
+}
+
+.deposit-details .input-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.deposit-details .input-group input,
+.deposit-details .input-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.qr-code-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.qr-code-container img {
+    max-width: 100px;
+}
+
+.wallet-info p {
+    text-align: center;
+}
+
+.wallet-info button {
+    display: block;
+    margin: 0 auto;
+    padding: 10px 20px;
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.wallet-info button:hover {
+    background-color: #0056b3;
+}
+
+.user-info {
+    margin-bottom: 20px;
+}
+
+.upload-section {
+    margin-bottom: 20px;
+}
+
+.upload-section #preview-container {
+    text-align: center;
+}
+
+.upload-section #preview {
+    max-width: 100px;
+    margin-top: 10px;
+}
+
+#confirm-deposit {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    background-color: #28a745;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+#confirm-deposit:hover {
+    background-color: #218838;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-top: 1px solid #e9ecef;
+}

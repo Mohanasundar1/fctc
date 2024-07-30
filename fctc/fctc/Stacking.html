@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staking Plans</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            background-image: url('image.jpeg'); 
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        .main-content {
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .card {
+            background-color: black;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background-color: yellow;
+            z-index: -1;
+            border-radius: 10px;
+        }
+
+        .card img {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 15px;
+        }
+
+        .card p {
+            margin: 5px 0;
+        }
+
+        .stake-button {
+            margin-top: 15px;
+            padding: 10px 20px;
+            background-color: rgb(242, 242, 239);
+            color: black;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .stake-button:hover {
+            background-color: #ffcc00;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Logo -->
+    <div class="logo">FCTCTOKEN</div>
+
+    <!-- Main Content Area -->
+    <div class="main-content">
+        <!-- Dashboard (example grid) -->
+        <div class="dashboard">
+            <div class="card">
+                <img src="fctc.png" alt="FCTC Coin">
+                <p>200 Days Staking</p>
+                <p>Staking Bonus 0.10% Daily</p>
+                <a href="deposit.html?plan=200&bonus=0.10" class="stake-button">Stake Now</a>
+            </div>
+            <div class="card">
+                <img src="fctc.png" alt="FCTC Coin">
+                <p>400 Days Staking</p>
+                <p>Staking Bonus 0.20% Daily</p>
+                <a href="deposit.html?plan=400&bonus=0.20" class="stake-button">Stake Now</a>
+            </div>
+            <div class="card">
+                <img src="fctc.png" alt="FCTC Coin">
+                <p>800 Days Staking</p>
+                <p>Staking Bonus 0.25% Daily</p>
+                <a href="deposit.html?plan=800&bonus=0.25" class="stake-button">Stake Now</a>
+            </div>
+            <div class="card">
+                <img src="fctc.png" alt="FCTC Coin">
+                <p>1200 Days Staking</p>
+                <p>Staking Bonus 0.30% Daily</p>
+                <a href="deposit.html?plan=1200&bonus=0.30" class="stake-button">Stake Now</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,361 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #000; /* Solid black background */
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative; /* Ensure positioning context for header */
+    overflow: hidden; /* Hide any overflow from star animation */
+}
+
+/* Starry Background */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://www.transparenttextures.com/patterns/stardust.png'); /* Star background image */
+    background-size: cover;
+    z-index: -1; /* Send background behind other content */
+}
+
+/* Header and Navigation */
+header {
+    position: absolute;
+    top: 40px; /* Move logo a little bit down */
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center; /* Center align the logo */
+    align-items: center;
+    border: none; /* Remove border-like structure */
+}
+
+header .logo {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    border: none; /* Remove any border from logo container */
+}
+
+header .logo img {
+    height: 150px;
+    border: none; /* Remove any border from logo image */
+    transition: all 0.3s ease; /* Smooth transition for hover effect */
+}
+
+header .logo img:hover {
+    box-shadow: 0 0 20px 10px gold; /* Gold glow effect */
+    transform: scale(1.1); /* Slightly increase size for emphasis */
+}
+
+/* Adjust navigation to be more left from the right side */
+nav {
+    position: absolute;
+    right: 120px; /* Moved further left */
+    top: 20px;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+nav ul li {
+    margin-left: 20px; /* Add space between items */
+}
+
+nav ul li:first-child {
+    margin-left: 0; /* Remove space before the first item */
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    position: relative;
+    padding: 5px;
+    transition: color 0.3s;
+    background: linear-gradient(45deg,#FFD700, #FFD700, #FFD700);
+    background-size: 400% 400%;
+    border-radius: 4px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(255, 228, 50, 0.2); /* Optional shadow */
+    padding: 10px 20px; /* Add padding for button-like appearance */
+}
+
+nav ul li a:hover {
+    color: #fff;
+    background: linear-gradient( #ffcc00);}
+
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -5px;
+    width: 100%;
+    height: 2px;
+    background: #2a5298;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+nav ul li a:hover::after {
+    opacity: 1;
+    transform: translateX(-50%) scaleX(1);
+}
+
+/* Main Page */
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    padding-top: 80px; /* Adjust padding to avoid overlap with header */
+}
+
+.coming-soon h1 {
+    font-size: 40px;
+    margin: 0;
+    animation: blinkGlow 1.5s infinite; /* Apply animation */
+}
+
+/* Animation for blinking and glowing effect */
+@keyframes blinkGlow {
+    0% {
+        opacity: 1;
+        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #2a5298, 0 0 40px #2a5298, 0 0 50px #2a5298, 0 0 60px #2a5298, 0 0 70px #2a5298;
+    }
+    50% {
+        opacity: 0.5;
+        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #2a5298, 0 0 40px #2a5298, 0 0 50px #2a5298, 0 0 60px #2a5298, 0 0 70px #2a5298;
+    }
+    100% {
+        opacity: 1;
+        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #2a5298, 0 0 40px #2a5298, 0 0 50px #2a5298, 0 0 60px #2a5298, 0 0 70px #2a5298;
+    }
+}
+
+/* Footer - Social Media Links */
+footer {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.5);
+    border: none; /* Remove border-like structure */
+}
+
+footer .social-media {
+    display: flex;
+    flex-direction: row; /* Align logos horizontally */
+    align-items: center; /* Center-align vertically */
+    gap: 15px; /* Space between the logos */
+}
+
+footer .social-media a {
+    color: #fff;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    border: none; /* Remove border-like structure */
+    padding: 0; /* Remove any padding */
+}
+
+footer .social-media a img {
+    width: 30px; /* Set uniform size for logos */
+    height: 30px; /* Set uniform size for logos */
+    border: 2px solid #fff; /* Add a border-like appearance */
+    border-radius: 50%; /* Make the border round */
+    outline: none; /* Remove any outline around the images */
+    object-fit: cover; /* Ensure logos fit well within the border */
+}
+
+/* Login and Register Pages */
+.login-container, .register-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.login-form, .register-form {
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 400px; /* Adjusted for login and register */
+    width: 100%;
+}
+
+.login-form h2, .register-form h2 {
+    color: #333333;
+    margin-bottom: 20px;
+    font-size: 22px; /* Adjusted for login and register */
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 12px; /* Decreased text size */
+    color: #333333;
+    margin-bottom: 6px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #dddddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 12px; /* Decreased text size */
+}
+
+/* Mobile Input Group */
+.mobile-input-group {
+    display: flex;
+    align-items: center;
+}
+
+.country-code-dropdown {
+    flex: 1;
+    margin-right: 10px;
+}
+
+/* Buttons */
+button[type="submit"], .verification-btn {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background: linear-gradient( #0066cc, #9933cc);
+    background-size: 400% 400%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    animation: gradientBG 5s ease infinite;
+}
+
+button[type="submit"]:hover, .verification-btn:hover {
+    transform: scale(1.05);
+}
+
+/* Animation for gradient background */
+@keyframes gradientBG {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.forgot-password {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.forgot-password a {
+    color: #2a5298;
+    text-decoration: none;
+}
+
+.forgot-password a:hover {
+    text-decoration: underline;
+}
+
+.verification-group {
+    display: flex;
+    align-items: center;
+}
+
+.verification-group button {
+    margin-left: 10px;
+}
+
+.timer {
+    margin-left: 10px;
+    font-size: 12px;
+    color: #666;
+}
+
+/* Forgot Password Modal */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    padding-top: 60px;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+    max-width: 500px; /* Maximum width */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Country Code Dropdown */
+.country-code-dropdown select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #dddddd;
+    border-radius: 4px;
+    background: #fff;
+    color: #333;
+    font-size: 12px;
+}
+
+.country-code-dropdown img {
+    width: 20px; /* Size for country flags */
+    height: auto;
+    margin-right: 10px;
+}

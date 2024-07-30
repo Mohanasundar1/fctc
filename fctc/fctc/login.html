@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Futuristic Login</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #141E30, #243B55);
+            font-family: 'Roboto', sans-serif;
+            color: #fff;
+        }
+
+        .login-container {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 20px;
+            padding: 40px; /* Increased padding */
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.7); /* Increased shadow */
+            text-align: center;
+            width: 200%;
+            max-width: 600px; /* Increased width */
+            transition: all 0.3s ease;
+        }
+
+        .login-container:hover {
+            transform: scale(1.05);
+        }
+
+        .login-form h2 {
+            margin-bottom: 30px; /* Increased margin */
+            font-size: 26px; /* Increased font size */
+            color: #00e6e6;
+        }
+
+        .form-group {
+            margin-bottom: 25px; /* Increased margin */
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            color: #ddd;
+            margin-bottom: 8px; /* Increased margin */
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 15px; /* Increased padding */
+            border: none;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.3);
+            color: #fff;
+            outline: none;
+            font-size: 18px; /* Increased font size */
+            transition: background 0.3s ease;
+        }
+
+        .form-group input:focus {
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        .form-group .required::after {
+            content: "*";
+            color: #e74c3c;
+            margin-left: 5px;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 15px; /* Increased padding */
+            border: none;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #00e6e6, #006699);
+            color: #fff;
+            font-size: 18px; /* Increased font size */
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .login-btn:hover {
+            background: linear-gradient(135deg, #006699, #00e6e6);
+        }
+
+        .additional-links {
+            margin-top: 20px; /* Increased margin */
+        }
+
+        .additional-links a {
+            display: block;
+            color: #00e6e6;
+            text-decoration: none;
+            margin: 8px 0; /* Increased margin */
+            font-size: 16px; /* Increased font size */
+        }
+
+        .additional-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            .login-container {
+                width: 90%;
+                max-width: none;
+            }
+
+            .login-form h2 {
+                font-size: 22px;
+            }
+
+            .form-group input {
+                font-size: 16px;
+            }
+
+            .login-btn {
+                font-size: 16px;
+            }
+        }
+    </style>
+    <script src="https://www.gstatic.com/firebasejs/10.12.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.4/firebase-auth.js"></script>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-form">
+            <h2>Login</h2>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="email" class="required">Email ID</label>
+                    <input type="email" id="email" name="email" placeholder="Enter Email Address" required>
+                </div>
+                <div class="form-group">
+                    <label for="password" class="required">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter Password" required>
+                </div>
+                <button type="submit" class="login-btn">Login</button>
+                <div class="additional-links">
+                    <a href="register.html" data-i18n="registerLink">Don't have an account? Sign up</a>
+                    <a href="forgot-password.html" data-i18n="forgotPasswordLink">Login trouble? Contact Support</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-auth.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDCXNyvHbE0Qoe6ixy5ph0LluJwLAVjRnM",
+            authDomain: "testing-e4d35.firebaseapp.com",
+            projectId: "testing-e4d35",
+            storageBucket: "testing-e4d35.appspot.com",
+            messagingSenderId: "1068295583061",
+            appId: "1:1068295583061:web:044e63ec2fb7b8ef73abdc",
+            measurementId: "G-4C9JQB4NCR"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        // Listen for form submission
+        document.getElementById('login-form').addEventListener('submit', async function(event) {
+            event.preventDefault();
+
+            // Retrieve form data
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            try {
+                // Sign in the user with Firebase Authentication
+                await signInWithEmailAndPassword(auth, email, password);
+                console.log('User logged in successfully.');
+
+                // Redirect to another page
+                window.location.href = 'web.html'; // Replace with your desired URL
+            } catch (error) {
+                console.error('Error logging in:', error);
+                alert('Error: ' + error.message);
+            }
+        });
+    </script>
+</body>
+</html>

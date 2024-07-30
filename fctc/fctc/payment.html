@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="web.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <nav class="sidebar">
+            <div class="logo">TRADERS</div>
+            <ul class="navigation">
+                <li class="active"><i class="fas fa-tachometer-alt"></i> Dashboard</li>
+                <li class="wallet">
+                    <i class="fas fa-wallet"></i> Wallet
+                    <div class="dropdown-content">
+                        <a href="#">Deposit</a>
+                        <a href="#">Withdraw</a>
+                    </div>
+                </li>
+                <li><i class="fas fa-box"></i> Package</li>
+                <li><i class="fas fa-users"></i> Team</li>
+                <li><i class="fas fa-chart-line"></i> Reports</li>
+                <li><i class="fas fa-gamepad"></i> Game</li>
+                <li><i class="fas fa-cog"></i> Profile Settings</li>
+                <li><i class="fas fa-sign-out-alt"></i> Logout</li>
+            </ul>
+        </nav>
+        <main class="main-content">
+            <header class="header">
+                <div class="user-info">
+                    <span class="user-id">FCT00001</span>
+                    <span class="user-name">(FC TRADERS)</span>
+                </div>
+                <div class="wallet-info">
+                    <span class="wallet-balance">W-Wallet - 0.00 USD</span>
+                </div>
+                <div class="display-mode">
+                    <button class="dark-mode active">Dark</button>
+                    <button class="light-mode">Light</button>
+                </div>
+            </header>
+            <section class="hero-banner">
+                <img src="hero-banner.png" alt="Hero Banner">
+            </section>
+            <section class="dashboard">
+                <div class="card fct-coin">
+                    <h2>FCT COIN</h2>
+                    <div class="amount">10000 FCTC</div>
+                    <div class="details">
+                        <p>Referral Income: 0.00</p>
+                        <p>Total Referral: 2</p>
+                    </div>
+                </div>
+                <div class="card withdraw-wallet">
+                    <h2>Withdraw Wallet</h2>
+                    <div class="amount">$0.00</div>
+                    <div class="details">
+                        <p>Pending Withdrawal: 0.00</p>
+                        <p>Withdraw Done: 0.00</p>
+                    </div>
+                </div>
+                <div class="card deposit-wallet">
+                    <h2>Deposit Wallet</h2>
+                    <div class="amount">$0.00</div>
+                    <div class="details">
+                        <p>Total Deposit: 0.00</p>
+                        <p>Pending Deposit: 0.00</p>
+                        <p>Rejected Deposit: 0.00</p>
+                    </div>
+                </div>
+                <div class="card trading-profit">
+                    <h2>Trading Profit</h2>
+                    <div class="amount">$0.00</div>
+                    <div class="details">
+                        <p>Total Trade: 0.00</p>
+                        <p>Active Trade: 0.00</p>
+                    </div>
+                </div>
+                <div class="card total-income">
+                    <h2>Total Income</h2>
+                    <div class="amount">$0.00</div>
+                    <div class="details">
+                        <p>Referral Income: 0.00</p>
+                        <p>Level Income: 0.00</p>
+                        <p>Trading Profit: 0.00</p>
+                    </div>
+                </div>
+                <div class="card trading-value">
+                    <h2>Trading Value</h2>
+                    <div class="amount">$0.00</div>
+                    <div class="details">
+                        <p>Package: 0.00</p>
+                    </div>
+                </div>
+            </section>
+            <section class="interactive-buttons">
+                <button class="interactive-button buy"><i class="fas fa-shopping-cart"></i> Buy</button>
+                <button class="interactive-button sell"><i class="fas fa-hand-holding-usd"></i> Sell</button>
+                <button class="interactive-button trade"><i class="fas fa-exchange-alt"></i> Trade</button>
+            </section>
+            <section class="default-page">
+                <h2>Welcome to the Default Page</h2>
+                <p>This is a default section for additional content or information.</p>
+            </section>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Staking Bonus</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            background-image: url('image.jpeg'); 
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .bonus-value {
+            font-size: 30px;
+            color: #4CAF50;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Daily Staking Bonus</h1>
+        <div id="bonus" class="bonus-value">Loading...</div>
+    </div>
+
+    <script>
+        // This function simulates fetching the bonus value from a server or an API
+        function fetchDailyStakingBonus() {
+            // Simulating a network request with a timeout
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    // Simulated bonus value
+                    const bonusValue = Math.random() * 100; // Random value between 0 and 100
+                    resolve(bonusValue.toFixed(2)); // Format to 2 decimal places
+                }, 1000); // Simulate network delay
+            });
+        }
+
+        // Update the bonus value on the page
+        async function updateBonus() {
+            const bonusElement = document.getElementById('bonus');
+            try {
+                const bonus = await fetchDailyStakingBonus();
+                bonusElement.textContent = `$${bonus}`;
+            } catch (error) {
+                bonusElement.textContent = 'Error loading bonus';
+            }
+        }
+
+        // Call the function to update the bonus value
+        updateBonus();
+    </script>
+</body>
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Total Earnings Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        header {
+            background: #333;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+        .section {
+            background: #fff;
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2, h3 {
+            margin: 0;
+            padding: 0;
+        }
+        h2 {
+            margin-bottom: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background: #f4f4f4;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px 0;
+            background: #333;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background: #555;
+        }
+        .history {
+            display: none;
+        }
+        .show-history {
+            cursor: pointer;
+            color: #0066cc;
+            text-decoration: underline;
+        }
+        .show-history:hover {
+            color: #004499;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Total Earnings Dashboard</h1>
+    </header>
+    <div class="container">
+        <div class="section">
+            <h2>Total Earnings Summary</h2>
+            <p><strong>Total Earnings:</strong> $[Total Amount]</p>
+        </div>
+
+        <div class="section">
+            <h2>Combined Earnings Breakdown</h2>
+            <p><strong>Staking Bonus:</strong> $[Staking Bonus Amount]</p>
+            <p><strong>Introducer Reward:</strong> $[Introducer Reward Amount]</p>
+            <p><strong>Community Reward:</strong> $[Community Reward Amount]</p>
+        </div>
+
+        <div class="section">
+            <h2>Detailed Combined Earnings History</h2>
+            <span class="show-history" onclick="toggleHistory()">Show/Hide History</span>
+            <div id="history" class="history">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Type</th>
+                            <th>Amount ($)</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>2024-07-01</td>
+                            <td>Staking Bonus</td>
+                            <td>$[Amount]</td>
+                            <td>Bonus from staking in July 2024.</td>
+                        </tr>
+                        <tr>
+                            <td>2024-07-10</td>
+                            <td>Introducer Reward</td>
+                            <td>$[Amount]</td>
+                            <td>Referral reward for user sign-up.</td>
+                        </tr>
+                        <tr>
+                            <td>2024-07-15</td>
+                            <td>Community Reward</td>
+                            <td>$[Amount]</td>
+                            <td>Participation reward from community events.</td>
+                        </tr>
+                        <!-- Add more rows as needed -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Actions & Next Steps</h2>
+            <a href="#" class="btn">View Detailed Report</a>
+            <a href="#" class="btn">Manage Staking</a>
+            <a href="#" class="btn">Invite More Users</a>
+            <a href="#" class="btn">Engage with Community</a>
+        </div>
+
+        <div class="section">
+            <h2>Support</h2>
+            <p>If you have any questions or need assistance, please contact our support team at <a href="mailto:support@example.com">support@example.com</a> or visit our <a href="#">Help Center</a>.</p>
+        </div>
+
+        <div class="section">
+            <h2>Disclaimer</h2>
+            <p>The total earnings shown are subject to change based on platform policies and updates. For the most accurate information, please refer to the detailed reports provided.</p>
+        </div>
+    </div>
+
+    <script>
+        function toggleHistory() {
+            var history = document.getElementById('history');
+            if (history.style.display === 'none' || history.style.display === '') {
+                history.style.display = 'block';
+            } else {
+                history.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

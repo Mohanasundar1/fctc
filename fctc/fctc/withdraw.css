@@ -1,0 +1,132 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background: linear-gradient(135deg, #0d0d0d, #1a1a1a); /* Futuristic dark gradient */
+    color: #fff;
+}
+
+/* Header */
+header {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+    text-align: center;
+}
+ 
+header .logo img {
+    height: 80px; /* Adjusted logo height */
+}
+
+/* Main Content */
+main {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align items to the start to make room for the logo */
+    height: calc(100vh - 60px);
+    padding: 20px;
+}
+
+/* Adjusted container size */
+.deposit-container {
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 15px; /* Increased border radius */
+    padding: 30px; /* Reduced padding */
+    max-width: 800px; /* Reduced max-width */
+    width: 90%; /* Make it responsive */
+    margin: 20px auto; /* Margin to push it down and center it horizontally */
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.5); /* Reduced shadow */
+    backdrop-filter: blur(8px); /* Reduced blur */
+    box-sizing: border-box; /* Ensures padding is included in width */
+}
+
+.deposit-container h1 {
+    text-align: center;
+    font-size: 22px; /* Slightly reduced font size */
+    margin-bottom: 20px; /* Reduced margin-bottom */
+}
+ 
+.input-group, .wallet-info, .user-info, .upload-section, .qr-code-container {
+    margin-bottom: 15px; /* Reduced margin */
+}
+ 
+.input-group label, .user-info label, .upload-section label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+ 
+input[type="text"], input[type="number"], select {
+    width: calc(100% - 22px); /* Adjusted width for padding */
+    padding: 10px;
+    border: 1px solid #333;
+    border-radius: 5px;
+    background: #222;
+    color: #fff;
+    margin-bottom: 10px; /* Added margin for spacing */
+}
+ 
+input[type="text"]::placeholder, input[type="number"]::placeholder {
+    color: #666;
+}
+ 
+button {
+    background: linear-gradient(45deg, #00bfff, #1e90ff);
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    padding: 10px; /* Reduced padding */
+    font-size: 14px; /* Slightly reduced font size */
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+    margin-top: 10px; /* Added margin for spacing */
+}
+ 
+button:hover {
+    background: linear-gradient(45deg, #1e90ff, #00bfff);
+    transform: scale(1.05);
+}
+ 
+button:focus {
+    outline: none;
+}
+ 
+/* QR Code Container */
+.qr-code-container {
+    text-align: center;
+    margin: 20px 0; /* Reduced margin for spacing */
+}
+ 
+#qr-code {
+    max-width: 100%;
+    max-height: 250px; /* Reduced max height */
+    border: 1px solid #333;
+    border-radius: 10px; /* Increased border radius */
+}
+ 
+/* Preview Section */
+#preview-container {
+    margin-top: 15px; /* Increased margin-top */
+    text-align: center;
+}
+ 
+#preview {
+    max-width: 100%;
+    max-height: 250px; /* Reduced max height */
+    border: 1px solid #333;
+    border-radius: 10px; /* Increased border radius */
+    display: none; /* Hidden by default */
+}
+ 
+/* Footer */
+footer {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+    text-align: center;
+}
+.minimum {
+    color: red;
+    font-weight: bold; /* Optional: makes the text bold */
+    margin-top: 10px;  /* Optional: adds some space above the text */
+}

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Info</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="userinfo.css">
+    <script src="https://www.gstatic.com/firebasejs/10.12.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.4/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.4/firebase-firestore.js"></script>
+</head>
+<body>
+    <div class="user-info-container">
+        <header>
+            <div class="logo">
+                <img src="fctc.png" alt="FCTCTOKEN Logo">
+            </div>
+            <h1>User Information</h1>
+        </header>
+        <main>
+            <div class="user-details">
+                <h2>Profile</h2>
+                <p><strong>User ID:</strong> <span id="user-id">Loading...</span></p>
+                <p><strong>Full Name:</strong> <span id="full-name">Loading...</span></p>
+                <p><strong>Email:</strong> <span id="email">Loading...</span></p>
+                <p><strong>Joined Date:</strong> <span id="joined-date">Loading...</span></p>
+            </div>
+            <div class="crypto-details">
+                <h2>Cryptocurrency Details</h2>
+                <p><strong>Total Balance:</strong> 1.234 BTC</p>
+                <p><strong>Staked Amount:</strong> 0.567 BTC</p>
+                <p><strong>Referral Income:</strong> 0.123 BTC</p>
+                <p><strong>Recent Transactions:</strong></p>
+                <ul>
+                    <li>Transaction 1 - 0.01 BTC - <span class="transaction-type">Deposit</span></li>
+                    <li>Transaction 2 - 0.005 BTC - <span class="transaction-type">Withdrawal</span></li>
+                    <li>Transaction 3 - 0.02 BTC - <span class="transaction-type">Staking</span></li>
+                </ul>
+            </div>
+        </main>
+        <footer>
+            <p>&copy; 2024 FCTC Token. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-app.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-auth.js";
+        import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-firestore.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDCXNyvHbE0Qoe6ixy5ph0LluJwLAVjRnM",
+            authDomain: "testing-e4d35.firebaseapp.com",
+            projectId: "testing-e4d35",
+            storageBucket: "testing-e4d35.appspot.com",
+            messagingSenderId: "1068295583061",
+            appId: "1:1068295583061:web:044e63ec2fb7b8ef73abdc",
+            measurementId: "G-4C9JQB4NCR"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        onAuthStateChanged(auth, async (user) => {
+            if (user) {
+                const userId = user.uid;
+                const userDocRef = doc(db, "User", userId);
+                const userDoc = await getDoc(userDocRef);
+
+                if (userDoc.exists()) {
+                    const userData = userDoc.data();
+                    document.getElementById('user-id').textContent = userId;
+                    document.getElementById('full-name').textContent = userData.username; // Using username field from Firestore
+                    document.getElementById('email').textContent = userData.email;
+                    document.getElementById('joined-date').textContent = userData.joinedDate;
+                } else {
+                    // If user data does not exist, create the user document with default values.
+                    const defaultData = {
+                        userId: userId,
+                        username: user.displayName || "Anonymous",
+                        email: user.email,
+                        joinedDate: new Date().toLocaleDateString()
+                    };
+                    await setDoc(userDocRef, defaultData);
+                    document.getElementById('user-id').textContent = userId;
+                    document.getElementById('full-name').textContent = defaultData.username;
+                    document.getElementById('email').textContent = defaultData.email;
+                    document.getElementById('joined-date').textContent = defaultData.joinedDate;
+                }
+            } else {
+                // User is signed out
+                window.location.href = 'login.html'; // Redirect to login page
+            }
+        });
+    </script>
+</body>
+</html>

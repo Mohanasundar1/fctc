@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Referral Page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="ref.css">
+</head>
+<body>
+        <div class="logo-container">
+            <img src="fctc.png" alt="Logo">
+        </div>
+    
+    <div class="container">
+        <header class="header">
+            <h1>Referral Program</h1>
+        </header>
+        <main class="main-content">
+            <section class="referral-section">
+                <h2>Your Referral Link</h2>
+                <div class="referral-link-container">
+                    <input type="text" id="referralLink" value="https://example.com/referral/FCT00001" readonly>
+                    <button id="copyButton">Copy Link</button>
+                </div>
+                <p class="info">Share this link with your friends and earn rewards for each successful referral!</p>
+            </section>
+            <section class="user-data">
+                <h2>User Data</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>User ID</th>
+                            <th>User Name</th>
+                            <th>Left Business</th>
+                            <th>Right Business</th>
+                            <th>Package</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Example data; replace with dynamic data as needed -->
+                        <tr>
+                            <td>2024-07-23</td>
+                            <td>FCT00001</td>
+                            <td>John Doe</td>
+                            <td>$1000</td>
+                            <td>$1500</td>
+                            <td>Premium</td>
+                        </tr>
+                        <tr>
+                            <td>2024-07-22</td>
+                            <td>FCT00002</td>
+                            <td>Jane Smith</td>
+                            <td>$500</td>
+                            <td>$800</td>
+                            <td>Standard</td>
+                        </tr>
+                        <!-- Add more rows as needed -->
+                    </tbody>
+                </table>
+            </section>
+        </main>
+        <script src="ref.js"></script>
+    </div>
+</body>
+</html>

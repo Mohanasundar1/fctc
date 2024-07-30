@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KYC Update</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+            margin: 0;
+            padding: 0;
+            color: #fff;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 0%; }
+            50% { background-position: 100% 100%; }
+            100% { background-position: 0% 0%; }
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.1); /* Glassmorphism effect */
+            border-radius: 15px;
+            backdrop-filter: blur(10px); /* Frosted glass effect */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            margin-top: 0;
+            color: #fff;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            margin-bottom: 8px;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="file"],
+        .form-group select {
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.2); /* Glassmorphism input fields */
+            color: #fff;
+        }
+
+        .form-group input[type="file"] {
+            padding: 12px 5px;
+        }
+
+        .form-group button {
+            padding: 12px 20px;
+            background: #007bff;
+            border: none;
+            color: #0d0404;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .form-group button:hover {
+            background: #0056b3;
+        }
+
+        .status {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background: rgba(0, 0, 0, 0.3); /* Glassmorphism status box */
+        }
+
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .column {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .form-group select#country {
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.2); /* Glassmorphism input fields */
+            color: #fff;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+        }
+    </style>
+    <script src="https://www.gstatic.com/firebasejs/10.12.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.4/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.4/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.4/firebase-storage.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>KYC Verification</h1>
+        <form id="kyc-form">
+            <div class="row">
+                <div class="column">
+                    <div class="form-group">
+                        <label for="country">Select Country:</label>
+                        <select id="country" name="country" required>
+                            <option value="India">India</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <div id="aadhar-details" class="form-group">
+                        <label for="aadhar-number">Aadhar Card Number:</label>
+                        <input type="text" id="aadhar-number" name="aadhar-number">
+                        <label for="aadhar-front">Upload Aadhar Card Front Image:</label>
+                        <input type="file" id="aadhar-front" name="aadhar-front" accept=".jpg, .jpeg, .png">
+                        <label for="aadhar-back">Upload Aadhar Card Back Image:</label>
+                        <input type="file" id="aadhar-back" name="aadhar-back" accept=".jpg, .jpeg, .png">
+                    </div>
+
+                    <div id="passport-details" class="form-group" style="display: none;">
+                        <label for="passport-number">Passport Number:</label>
+                        <input type="text" id="passport-number" name="passport-number">
+                        <label for="passport-upload">Upload Passport:</label>
+                        <input type="file" id="passport-upload" name="passport-upload" accept=".jpg, .jpeg, .png">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="selfie-upload">Selfie Image:</label>
+                        <input type="file" id="selfie-upload" name="selfie-upload" accept=".jpg, .jpeg, .png" required>
+                    </div>
+                </div>
+
+                <div class="column">
+                    <div class="form-group">
+                        <label for="address-proof">Select Address Proof:</label>
+                        <select id="address-proof" name="address-proof" required>
+                            <option value="Aadhar Card">Aadhar Card</option>
+                            <option value="Passport">Passport</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="id-proof-number">ID Proof Number:</label>
+                        <input type="text" id="id-proof-number" name="id-proof-number" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address-proof-upload">Upload Address Proof:</label>
+                        <input type="file" id="address-proof-upload" name="address-proof-upload" accept=".jpg, .jpeg, .png" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <button type="submit">Verify</button>
+            </div>
+        </form>
+        <div id="status" class="status">
+            <!-- Status message will be displayed here -->
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-app.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-auth.js";
+        import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-firestore.js";
+        import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-storage.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDCXNyvHbE0Qoe6ixy5ph0LluJwLAVjRnM",
+            authDomain: "testing-e4d35.firebaseapp.com",
+            projectId: "testing-e4d35",
+            storageBucket: "testing-e4d35.appspot.com",
+            messagingSenderId: "1068295583061",
+            appId: "1:1068295583061:web:044e63ec2fb7b8ef73abdc",
+            measurementId: "G-4C9JQB4NCR"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+        const storage = getStorage(app);
+
+        // Function to upload a file to Firebase Storage and return its download URL
+        async function uploadFile(file, path) {
+            const storageRef = ref(storage, path);
+            const snapshot = await uploadBytes(storageRef, file);
+            const downloadURL = await getDownloadURL(snapshot.ref);
+            return downloadURL;
+        }
+
+        // Function to handle form submission
+        document.getElementById('kyc-form').addEventListener('submit', async function(event) {
+            event.preventDefault();
+
+            const userId = auth.currentUser ? auth.currentUser.uid : 'anonymous';
+            const country = document.getElementById('country').value;
+            const aadharNumber = document.getElementById('aadhar-number').value;
+            const passportNumber = document.getElementById('passport-number').value;
+            const idProofNumber = document.getElementById('id-proof-number').value;
+
+            // Handle file uploads
+            const selfieFile = document.getElementById('selfie-upload').files[0];
+            const aadharFrontFile = document.getElementById('aadhar-front').files[0];
+            const aadharBackFile = document.getElementById('aadhar-back').files[0];
+            const passportFile = document.getElementById('passport-upload').files[0];
+            const addressProofFile = document.getElementById('address-proof-upload').files[0];
+
+            try {
+                const selfieUrl = selfieFile ? await uploadFile(selfieFile, `kyc/${userId}/selfie.jpg`) : '';
+                const aadharFrontUrl = aadharFrontFile ? await uploadFile(aadharFrontFile, `kyc/${userId}/aadhar_front.jpg`) : '';
+                const aadharBackUrl = aadharBackFile ? await uploadFile(aadharBackFile, `kyc/${userId}/aadhar_back.jpg`) : '';
+                const passportUrl = passportFile ? await uploadFile(passportFile, `kyc/${userId}/passport.jpg`) : '';
+                const addressProofUrl = addressProofFile ? await uploadFile(addressProofFile, `kyc/${userId}/address_proof.jpg`) : '';
+
+                const userKycData = {
+                    country,
+                    aadharNumber,
+                    passportNumber,
+                    idProofNumber,
+                    selfieUrl,
+                    aadharFrontUrl,
+                    aadharBackUrl,
+                    passportUrl,
+                    addressProofUrl,
+                };
+
+                await setDoc(doc(db, "User", userId), userKycData, { merge: true });
+                document.getElementById('status').innerText = 'Your KYC update request has been submitted.';
+            } catch (error) {
+                console.error("Error updating KYC data:", error);
+                document.getElementById('status').innerText = 'There was an error submitting your KYC update request. Please try again.';
+            }
+        });
+
+        document.getElementById('country').addEventListener('change', function() {
+            const country = this.value;
+            if (country === 'India') {
+                document.getElementById('aadhar-details').style.display = 'block';
+                document.getElementById('passport-details').style.display = 'none';
+            } else {
+                document.getElementById('aadhar-details').style.display = 'none';
+                document.getElementById('passport-details').style.display = 'block';
+            }
+        });
+
+        // Optional: Ensure user is authenticated
+        onAuthStateChanged(auth, (user) => {
+            if (!user) {
+                window.location.href = "login.html"; // Redirect to login if not authenticated
+            }
+        });
+    </script>
+</body>
+</html>

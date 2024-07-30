@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introducer Reward System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('image.jpeg'); 
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.9); /* Add transparency to background */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #666;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        .button:hover {
+            background-color: #218838;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+        .table-container {
+            display: none;
+            margin-top: 20px;
+            text-align: left;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Introducer Reward Calculator</h1>
+        <div class="input-group">
+            <label for="stakeAmount">Enter Amount Staked:</label>
+            <input type="number" id="stakeAmount" placeholder="Enter amount in tokens">
+        </div>
+        <button class="button" onclick="calculateReward()">Transfer</button>
+        <button class="button" onclick="toggleTable()">View</button>
+        <div class="result" id="rewardResult"></div>
+        <div class="table-container" id="tableContainer">
+            <table>
+                <thead>
+                    <tr>
+                        <th>S.NO</th>
+                        <th>Date</th>
+                        <th>UserID</th>
+                        <th>No of Staked Coin</th>
+                        <th>Reward</th>
+                    </tr>
+                </thead>
+                <tbody id="rewardTableBody">
+                    <!-- Table rows will be appended here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        let transactionCounter = 0;
+
+        function calculateReward() {
+            // Get the staking amount from input
+            const stakeAmount = parseFloat(document.getElementById('stakeAmount').value);
+            // Check if the input is valid
+            if (isNaN(stakeAmount) || stakeAmount <= 0) {
+                document.getElementById('rewardResult').innerText = 'Please enter a valid amount.';
+                return;
+            }
+            // Calculate the reward (5% of the staking amount)
+            const reward = (stakeAmount * 0.05).toFixed(2);
+            // Display the result
+            document.getElementById('rewardResult').innerText = `Introducer Reward: ${reward} tokens`;
+            
+            // Log the transaction
+            logTransaction(stakeAmount, reward);
+
+            // Redirect to Main Wallet page
+            window.location.href = 'withdraw.html';
+        }
+
+        function logTransaction(stakeAmount, reward) {
+            const tableBody = document.getElementById('rewardTableBody');
+            const newRow = document.createElement('tr');
+            
+            const date = new Date().toLocaleDateString();
+            const userID = `User${transactionCounter + 1}`; // Example UserID, can be replaced with actual user data
+
+            newRow.innerHTML = `
+                <td>${++transactionCounter}</td>
+                <td>${date}</td>
+                <td>${userID}</td>
+                <td>${stakeAmount}</td>
+                <td>${reward}</td>
+            `;
+            tableBody.appendChild(newRow);
+        }
+
+        function toggleTable() {
+            const tableContainer = document.getElementById('tableContainer');
+            if (tableContainer.style.display === 'none' || tableContainer.style.display === '') {
+                tableContainer.style.display = 'block';
+            } else {
+                tableContainer.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

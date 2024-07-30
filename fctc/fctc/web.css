@@ -1,0 +1,343 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(135deg, #3c8dbc, #282a2d); /* Updated gradient background */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    animation: gradientAnimation 10s ease infinite; /* Adding gradient animation */
+    background-size: 400% 400%;
+}
+
+@keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.container {
+    display: flex;
+    width: 100%;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    display: flex;
+    flex-direction: column;
+}
+
+.logo {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 24px;
+    text-align: center;
+    padding: 20px;
+    background-color: #1a252f;
+    border-bottom: 1px solid #34495e;
+}
+
+.navigation {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    flex-grow: 1;
+}
+
+.navigation li {
+    position: relative;
+    padding: 15px 20px;
+    cursor: pointer;
+    border-bottom: 1px solid #34495e;
+    display: flex;
+    align-items: center;
+}
+
+.navigation li i {
+    margin-right: 15px;
+    transition: transform 0.3s ease;
+}
+
+.navigation li:hover i {
+    transform: scale(1.2);
+}
+
+.navigation li:hover {
+    background-color: #34495e;
+}
+
+.navigation li .dropdown-content {
+    display: none;
+    position: absolute;
+    left: 100%;
+    top: 0;
+    background-color: #34495e;
+    min-width: 200px;
+    z-index: 1;
+    border-left: 1px solid #2c3e50;
+}
+
+.navigation li:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content a,
+.dropdown-content p {
+    color: #ecf0f1;
+    padding: 10px;
+    text-decoration: none;
+    display: block;
+    border-bottom: 1px solid #2c3e50;
+}
+
+.dropdown-content a:hover,
+.dropdown-content p:hover {
+    background-color: #1a252f;
+}
+
+.main-content {
+    flex-grow: 1;
+    padding: 20px;
+    background-color: #ecf0f1;
+    overflow-y: auto;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #34495e;
+    color: #ecf0f1;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.user-info,
+.wallet-info {
+    display: flex;
+    align-items: center;
+}
+
+.user-info span,
+.wallet-info span {
+    margin-right: 10px;
+}
+
+.display-mode button {
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
+.display-mode button.active {
+    background-color: #1a252f;
+}
+
+.hero-banner {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.hero-banner img {
+    max-width: 80%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.dashboard {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.card {
+    background-color: #34495e;
+    color: #ecf0f1;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card i {
+    font-size: 24px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    transition: transform 0.3s ease;
+}
+
+/* .card:hover i {
+    transform: rotate(360deg);
+} */
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+.card-title {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.card-value {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.interactive-buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.interactive-button {
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.interactive-button i {
+    margin-right: 10px;
+}
+
+.interactive-button:hover {
+    background-color: #1a252f;
+}
+
+.header .user-info .user-name::after {
+    /* content: url('fctc.png'); */
+    margin-left: 10px;
+    vertical-align: middle;
+}
+.wallet-button {
+    display: block;
+    margin: 20px auto 0;
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.wallet-button:hover {
+    background-color: #2980b9;
+}
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+.container {
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #2c3e50;
+    padding: 20px;
+    color: white;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    overflow-y: auto;
+}
+
+.main-content {
+    margin-left: 250px;
+    padding: 20px;
+    background-image: url('hero-banner.png'); 
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.header, .hero-banner, .dashboard {
+    background-color: rgba(0, 0, 0, 0.5); /* Optional: to create a contrast with the background image */
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.card {
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+    position: relative;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin: 10px;
+    text-align: center;
+    background-color: #34495e;
+    color: #fff;
+    text-decoration: none;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card i {
+    display: block;
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+.card h2 {
+    margin: 0;
+    font-size: 1.2em;
+}
+
+.card a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.button-container a {
+    background-color: #e5e5e5;
+    color: rgb(0, 0, 0);
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 12px;
+    text-decoration: none;
+    text-align: center;
+}
+
+.button-container a:hover {
+    background-color: #2c3e50;
+    color: #fff;
+}
+
+.hero-banner img {
+    width: 100%;
+    border-radius: 8px;
+}
+.card h3{
+    color:red;
+}
